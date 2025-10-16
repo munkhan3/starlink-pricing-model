@@ -1,4 +1,4 @@
-# 🌌 Starlink Regional Pricing Optimization — Nevada, Nebraska, and Iowa
+# Starlink Regional Pricing Optimization
 
 ### Objective
 Determine the **optimal residential pricing strategy** for Starlink service across **Nevada, Nebraska, and Iowa** to **maximize customer adoption** while **maintaining average revenue per user (ARPU)**.
@@ -7,7 +7,7 @@ This project uses **publicly available data** to model broadband competition, id
 
 ---
 
-## 🧭 Project Overview
+## Project Overview
 
 | Stage | Description |
 |-------|--------------|
@@ -20,7 +20,7 @@ This project uses **publicly available data** to model broadband competition, id
 
 ---
 
-## 📂 Repository Structure
+## Repository Structure
 
 starlink-pricing/
 ├─ README.md                # Project overview, data sources, and methodology
