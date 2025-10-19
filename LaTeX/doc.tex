@@ -1,4 +1,3 @@
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \documentclass[11pt, titlepage]{report}
@@ -10,21 +9,25 @@
 \usepackage{listings}
 \usepackage{mathtools}
 \usepackage{dsfont}
+\usepackage{enumitem}
 \usepackage{color}
 \usepackage[table]{xcolor}
 \usepackage[linguistics]{forest}
 \usepackage{tikz}
+\usepackage{soul}
 \usetikzlibrary{calc,shapes}
 \usetikzlibrary{arrows}
 
 \usepackage[text={6.5in,9.25in},centering]{geometry}
 \usepackage[colorlinks=true,urlcolor=blue,citecolor=blue]{hyperref}
-% code blocks
+
+% Code blocks
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
 \definecolor{codepurple}{rgb}{0.58,0,0.82}
 \definecolor{backcolour}{rgb}{0.98, 0.98, 0.98}
 \definecolor{darkblue}{rgb}{0.3, 0.1, 0.6}
+
 \lstdefinestyle{mystyle}{
     backgroundcolor=\color{backcolour},   
     commentstyle=\color{codegreen},
@@ -44,7 +47,10 @@
     tabsize=2
 }
 \lstset{style=mystyle}
+
 \DeclareMathOperator*{\argmin}{argmin}
+\DeclareMathOperator*{\argmax}{argmax}
+
 % Layout
 \newtheorem{theorem}{Theorem}
 \newtheorem{lemma}{Lemma}
@@ -56,93 +62,118 @@
 \lhead{%
   \ifcase\value{page}
   % empty test for page = 0
-  \or Problem Formulation % page 2
+  \or Introduction \& Problem Formulation % page 2
+  \or Problem Formulation
   \else
   % Empty chead here!
   \fi
 }
 \rhead{\thepage}
 \cfoot{\thepage}
-%\fancyhf{}
 
-\fancypagestyle{plain}{% copies "fancy" over "plain"
-  \fancyfoot[C]{\thepage}% you can add edits that won't affect "fancy" but only "plain"
+\fancypagestyle{plain}{%
+  \fancyfoot[C]{\thepage}
 }
+
 \setlength{\parindent}{0.0in}
 \setlength{\parskip}{0.5em}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \author{Khan, Muneer}
-\title{\textbf{Constrained Optimization of Price Points Across Geographic Markets to Maximize Customer Adoption}}
+\title{\textbf{Maximizing Subscriber Adoption via Constrained Optimization of Price Points Across Geographic Markets}}
 \date{\today}
 
-\begin{title}
-\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Horizontal line command
 
-%----------------------------------------------------------------------------------------
-%	LOGO SECTION
-%----------------------------------------------------------------------------------------
- 
-%----------------------------------------------------------------------------------------
+\begin{document}
 
-\center % Center everything on the page
+\begin{titlepage}
+\centering
 
-%----------------------------------------------------------------------------------------
-%	HEADING SECTIONS
-%----------------------------------------------------------------------------------------
+\phantom{0}
+\vspace{5.5cm}
 
-\textsc{\LARGE Duke University}\\[0.5cm] % Name of your university/college
-\textsc{\Large Department of Mathematics}\\[0.5cm] % Major heading such as course name
-
-%----------------------------------------------------------------------------------------
-%	TITLE SECTION
-%----------------------------------------------------------------------------------------
 \makeatletter
+\begin{flushleft}
+{\Large Muneer Khan}
+\end{flushleft}
+
+\vspace{-0.5cm}
+
 \HRule \\[0.3cm]
 {\begin{flushleft}
 \huge \@title\\[0.3cm]
-\end{flushleft}} % Title of your document
-\HRule \\[1.5cm]
- 
-%----------------------------------------------------------------------------------------
-%	AUTHOR SECTION
-%----------------------------------------------------------------------------------------
+\end{flushleft}}
+\HRule
 
-\begin{minipage}{0.4\textwidth}
-\begin{flushleft} \large
-\emph{Author:}\\[0.1cm]
-\@author % Your name
+\vspace{0.1cm}
+\begin{flushleft}
+{\Large 10/20/2025}
 \end{flushleft}
-\end{minipage}
-~
-\begin{minipage}{0.4\textwidth}
-\begin{flushright} \large
-\emph{Advisor:} \\[0.1cm]
-Dr. Veronica Ciocanel \\[1.2em] % Supervisor's Name
-\phantom{0}\\
 
-\end{flushright}
-\end{minipage}\\[2cm]
+\vfill
 \makeatother
 
-% If you don't want a supervisor, uncomment the two lines below and remove the section above
-%\Large \emph{Author:}\\
-%John \textsc{Smith}\\[3cm] % Your name
+\end{titlepage}
 
-%----------------------------------------------------------------------------------------
-%	DATE SECTION
-%----------------------------------------------------------------------------------------
+\chapter*{Introduction}
+\section*{} \vspace{-4em}
+In this project, we aim to perform a constrained optimization of prices across three Starlink markets: Nevada, Nebraska, and Iowa. In particular, our objective is to use the prices to maximize subscriber adoption while maintaining average revenue per user (ARPU). From a strategic perspective, the goal is to increase market share using price points as the primary lever. In parallel though, we want to avoid revenue losses per user to guarantee revenue growth. \par
 
-{\large April 13, 2022}\\[2cm] % Date, change the \today to a set date if you want to be precise
+We will approach this problem by taking the following steps...
+\begin{enumerate}[topsep=0pt, itemsep=0pt]
+  \item \textbf{Define Key Objectives \& Metrics:} Rigorously define main objectives and identify KPIs of interest (e.g., specify problem framing, adoption measure, flexibility, etc.)
+  \item \textbf{Hypothesize Predictors:} Develop a comprehensive list of predictors and determine usage feasibility based on data quality and access
+  \item \textbf{Research Data \& Propose Model:} Conduct exploratory data analysis to shortlist significant predictors and identify the best optimization framework
+  \item \textbf{Implement Model \& Drive Strategy:} Use dynamic model outputs to inform business recommendations for pricing strategy
+  \item \textbf{Suggest Extensions \& Next Steps:} Based on recommendations and data, suggest extensions or caveats before moving forward with execution
+\end{enumerate}
 
-\vfill % Fill the rest of the page with whitespace
+We have made several assumptions in completing this project, and there are plenty of possible extensions. Those assumptions are detailed below with corresponding rationale. Note that all data used in this research is publicly accessible.
 
-\end{title}
+\section*{Problem Formulation}
+\subsection*{Assumptions \& Definitions}
+We are looking to optimize price points for each of the $k$ pricing tiers given our stated goals. To do this effectively, we need to define exactly what we mean by \textit{adoption} and make some preliminary assumptions about market treatment. \par
 
-\begin{document}
-\maketitle
+For the purposes of this project, we define the adoption metric $A$ to be the proportion of the target addressable market (in households) that we have captured. This definition is applicable \textit{regardless of the granularity at which we calculate adoption}. In fact, we will maintain a dynamic matrix of adoptions $\mathbf{A}$ indexed by price point and region and calculate general adoption metrics (e.g., across an entire region or across the entire market) from that matrix. This approach allows for ease of calculation and comparison when analyzing results. \par
 
-\chapter{Introduction} 
-\section{Problem Formulation}
+We can handle the geographic separation in two ways:
+\begin{itemize}[topsep=0pt, after=\vspace{5pt}]
+  \item [$\bullet$] \textbf{Method 1 - Optimize Price Points Collectively} \\[0.1em]
+  This method presents a standard set of price points to all subscribers regardless of location. This is a good choice if we are looking to \ul{\textit{highlight market consistency, abide by potential regulatory statutes, or prioritize coverage expansion.}}
+
+  \item [$\bullet$] \textbf{Method 2 - Optimize Price Points Per State} \\[0.1em]
+  This method presents different sets of price points based on subscriber location. This is a good choice if we observe \ul{\textit{significant variation across geographic markets in price elasticity, income distributions, cost of provided services, or regulatory/tax considerations.}}
+\end{itemize}
+
+We will use \textbf{Method 2} in this project, given that most broadband providers price based on location. However, our implementation can be easily extended to \textbf{Method 1} by adding the constraint that the price points must be constant across the markets and solving the new constrained problem.
+
+\subsection*{Formalizing the Objective}
+Suppose the adoption metric $A$ for a particular geographic market is the scalar output generated by a function $f$ of some predictor variables $\mathbf{X}$ that we will shortlist. We know that adoption will depend on at least the price vector $\mathbf{p}$ with $k$ elements (one price per pricing level). We can define the objective as follows:
+\begin{align*}
+  \argmax_{\mathbf{p}} \left\{f(\mathbf{p}, \mathbf{X})\right\}
+\end{align*}
+In other words, we will use $\mathbf{p}$ and $\mathbf{X}$ to create the adoption matrix $\mathbf{A}$ via a maximization algorithm, and then the function $f$ will extract the appropriate adoption metric that we desire from the matrix.
+
+\subsection*{Formalizing the Constraints}
+We want to prioritize the objective while maintaining our initial ARPU $R_{0}$, which will depend on the adoption metric and the price. Suppose $N_t(\mathbf{A}_t)$ is the $k$-length vector of subscriber count (per price level) at some time $t$ given the adoption matrix at that time. If $R_t$ is the ARPU at that same time, there are two options for our constraint.
+
+\subsubsection*{State-Dependent}
+If we want to allow for a stricter constraint that requires the average revenue for each regional market to be at least level, we have the following constraint \textit{for each state individually}:
+\begin{align*}
+  R_{t} = \frac{\langle \mathbf{p}_t, N_t(\mathbf{A}_t) \rangle}{\|N_t(\mathbf{A}_t)\|_1} \geq R_{0}
+\end{align*}
+In essence, there are three constraints in this formulation.
+
+\subsubsection*{State-Independent}
+If we want to allow for a more flexible constraint that only requires the average revenue across the entire three-state market to be at least level, we have the following singular constraint:
+\begin{align*}
+  R_{t} =
+  \frac{\sum_{s = 1}^3 \langle \mathbf{p}_s, N_t(\mathbf{A}_s) \rangle}
+       {\sum_{s = 1}^3 \|N_t(\mathbf{A}_s)\|_1} \geq R_{0}
+\end{align*}
+
+Note that deciding between these two constraint formulations is separate from the methodology decision made earlier and relies more on subsequent analysis. We will explore both formulations.
 
 \end{document}
