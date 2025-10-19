@@ -1,0 +1,148 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt, titlepage]{report}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{listings}
+\usepackage{mathtools}
+\usepackage{dsfont}
+\usepackage{color}
+\usepackage[table]{xcolor}
+\usepackage[linguistics]{forest}
+\usepackage{tikz}
+\usetikzlibrary{calc,shapes}
+\usetikzlibrary{arrows}
+
+\usepackage[text={6.5in,9.25in},centering]{geometry}
+\usepackage[colorlinks=true,urlcolor=blue,citecolor=blue]{hyperref}
+% code blocks
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.98, 0.98, 0.98}
+\definecolor{darkblue}{rgb}{0.3, 0.1, 0.6}
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{codepurple},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{blue},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+\lstset{style=mystyle}
+\DeclareMathOperator*{\argmin}{argmin}
+% Layout
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+
+% Header
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\headheight = 14.5pt
+\lhead{%
+  \ifcase\value{page}
+  % empty test for page = 0
+  \or Problem Formulation % page 2
+  \else
+  % Empty chead here!
+  \fi
+}
+\rhead{\thepage}
+\cfoot{\thepage}
+%\fancyhf{}
+
+\fancypagestyle{plain}{% copies "fancy" over "plain"
+  \fancyfoot[C]{\thepage}% you can add edits that won't affect "fancy" but only "plain"
+}
+\setlength{\parindent}{0.0in}
+\setlength{\parskip}{0.5em}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\author{Khan, Muneer}
+\title{\textbf{Constrained Optimization of Price Points Across Geographic Markets to Maximize Customer Adoption}}
+\date{\today}
+
+\begin{title}
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+
+%----------------------------------------------------------------------------------------
+%	LOGO SECTION
+%----------------------------------------------------------------------------------------
+ 
+%----------------------------------------------------------------------------------------
+
+\center % Center everything on the page
+
+%----------------------------------------------------------------------------------------
+%	HEADING SECTIONS
+%----------------------------------------------------------------------------------------
+
+\textsc{\LARGE Duke University}\\[0.5cm] % Name of your university/college
+\textsc{\Large Department of Mathematics}\\[0.5cm] % Major heading such as course name
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+\makeatletter
+\HRule \\[0.3cm]
+{\begin{flushleft}
+\huge \@title\\[0.3cm]
+\end{flushleft}} % Title of your document
+\HRule \\[1.5cm]
+ 
+%----------------------------------------------------------------------------------------
+%	AUTHOR SECTION
+%----------------------------------------------------------------------------------------
+
+\begin{minipage}{0.4\textwidth}
+\begin{flushleft} \large
+\emph{Author:}\\[0.1cm]
+\@author % Your name
+\end{flushleft}
+\end{minipage}
+~
+\begin{minipage}{0.4\textwidth}
+\begin{flushright} \large
+\emph{Advisor:} \\[0.1cm]
+Dr. Veronica Ciocanel \\[1.2em] % Supervisor's Name
+\phantom{0}\\
+
+\end{flushright}
+\end{minipage}\\[2cm]
+\makeatother
+
+% If you don't want a supervisor, uncomment the two lines below and remove the section above
+%\Large \emph{Author:}\\
+%John \textsc{Smith}\\[3cm] % Your name
+
+%----------------------------------------------------------------------------------------
+%	DATE SECTION
+%----------------------------------------------------------------------------------------
+
+{\large April 13, 2022}\\[2cm] % Date, change the \today to a set date if you want to be precise
+
+\vfill % Fill the rest of the page with whitespace
+
+\end{title}
+
+\begin{document}
+\maketitle
+
+\chapter{Introduction} 
+\section{Problem Formulation}
+
+\end{document}
